@@ -23,7 +23,7 @@ class ImageDetailViewModel : ViewModel() {
         _imageState.value = ImageState.Loading
 
         viewModelScope.launch {
-            delay(1100)
+            delay(1000)
             if (url.isNotEmpty()) {
                 Log.d("ImageDetailViewModel", "Setting image URL: $url")
                 _imageState.value = ImageState.Success(url)
