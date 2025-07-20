@@ -4,9 +4,18 @@ import com.google.gson.annotations.SerializedName
 
 data class UnsplashResponse(
     val id: String,
-    @SerializedName("urls")
+    @SerializedName("created_at")
+    val createdAt: String,
+    @SerializedName("updated_at")
+    val updatedAt: String,
+    val width: Int,
+    val height: Int,
+    val color: String?,
+    val likes: Int,
+    @SerializedName("liked_by_user")
+    val likedByUser: Boolean,
+    val description: String?,
     val urls: Urls,
-    @SerializedName("user")
     val user: User
 )
 
@@ -21,6 +30,9 @@ data class Urls(
 data class User(
     val id: String,
     val username: String,
-    @SerializedName("name")
-    val name: String
+    val name: String,
+    @SerializedName("portfolio_url")
+    val portfolioUrl: String?,
+    val bio: String?,
+    val location: String?
 )

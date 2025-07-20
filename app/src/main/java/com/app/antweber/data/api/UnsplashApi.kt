@@ -1,17 +1,18 @@
 package com.app.antweber.data.api
 
-import com.app.antweber.model.UnsplashResponse
 import com.app.antweber.BuildConfig
+import com.app.antweber.model.UnsplashResponse
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface UnsplashApi {
+    @Headers("Authorization: Client-ID ${BuildConfig.UNSPLASH_API_KEY}")
     @GET("/photos")
+
     suspend fun getPhotos(
-        //Свой ключ от API Unsplash прописать в файле local.properties в поле UNSPLASH_API_KEY
-        @Query("client_id") clientId: String = BuildConfig.UNSPLASH_API_KEY,
-        @Query("page") page: Int = 1,
-        @Query("per_page") perPage: Int = 16,
-        @Query("order_by") orderBy: String = "latest"
-    ): List<UnsplashResponse>
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int,
+        @Query("order_by") orderBy: String
+    ) : List<UnsplashResponse>
 }

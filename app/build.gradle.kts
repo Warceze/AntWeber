@@ -1,3 +1,13 @@
+import java.util.Properties
+
+val localProperties = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        load(localPropertiesFile.inputStream())
+    }
+}
+val unsplashApiKey: String = localProperties.getProperty("UNSPLASH_API_KEY") ?: ""
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -19,12 +29,8 @@ android {
             useSupportLibrary = true
         }
 
-        buildConfigField(
-            "String",
-            "UNSPLASH_API_KEY",
-            "\"${project.findProperty("UNSPLASH_API_KEY") ?: ""}\""
-        )
-
+        // Добавляем API-ключ в BuildConfig
+        buildConfigField("String", "UNSPLASH_API_KEY", "\"$unsplashApiKey\"")
     }
 
     buildTypes {
@@ -46,12 +52,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.4"
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -59,9 +68,7 @@ android {
     }
 }
 
-
 dependencies {
-
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("androidx.compose.foundation:foundation:1.4.0")

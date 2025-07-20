@@ -49,7 +49,6 @@ fun HomeScreen(
     val rotation = remember { Animatable(0f) }
 
     LaunchedEffect(isRefreshing) {
-        Log.d("HomeScreen", "isRefreshing: $isRefreshing")
         if (isRefreshing) {
             rotation.animateTo(
                 targetValue = 360f,
@@ -79,9 +78,9 @@ fun HomeScreen(
                     .fillMaxWidth()
             )
             TabRow(
-                tabs = listOf("New", "Popular"),
+                tabs = listOf("Relevant", "Oldest"),
                 onTabSelected = { category ->
-                    viewModel.loadImages(orderBy = if (category == "New") "latest" else "popular")
+                    viewModel.loadImages(orderBy = if (category == "Relevant") "relevant" else "oldest")
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -180,7 +179,7 @@ fun SearchBar(modifier: Modifier = Modifier) {
             singleLine = true,
             visualTransformation = VisualTransformation.None,
             colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color(0xFFEEEEEF),
+                containerColor = Color(0xFFECECEC),
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 cursorColor = Color.Black
@@ -210,7 +209,7 @@ fun TabRow(
                     modifier = Modifier
                         .offset(x = (-173).dp, y = 48.dp)
                         .width(currentTabPosition.width)
-                        .background(Color(0xFFCF497E))
+                        .background(Color(0xFFD30046))
                 )
             } else {
                 Box(
