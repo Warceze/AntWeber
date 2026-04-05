@@ -42,7 +42,9 @@ fun BottomNavigationBar(navController: NavController) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_home),
                             contentDescription = "Home",
-                            modifier = Modifier.size(27.dp).padding(vertical = 1.dp),
+                            modifier = Modifier
+                                .size(27.dp)
+                                .padding(vertical = 1.dp),
                             tint = if (currentRoute?.destination?.route == "home") Color(0xFFCF497E) else Color.Gray
                         )
                     },
@@ -55,7 +57,30 @@ fun BottomNavigationBar(navController: NavController) {
                         indicatorColor = Color.Transparent
                     )
                 )
+                NavigationBarItem(
+                    icon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.antlogo),
+                            contentDescription = "TestScreen",
+                            modifier = Modifier
+                                .size(27.dp)
+                                .padding(vertical = 1.dp),
+                            tint = if (currentRoute?.destination?.route == "testScreen") Color(
+                                0xFFCF497E
+                            ) else Color.Gray
+                        )
+                    },
+                    modifier = Modifier.background(Color.White),
+                    selected = currentRoute?.destination?.route == "testScreen",
+                    onClick = { navController.navigate("testScreen") },
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = Color(0xFFCF497E),
+                        unselectedIconColor = Color.Gray,
+                        indicatorColor = Color.Transparent
+                    )
+                )
             }
+
         }
     }
 }

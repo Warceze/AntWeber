@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.app.antweber.ui.components.HomeScreen
 import com.app.antweber.ui.components.ImageDetailScreen
+import com.app.antweber.ui.components.TestScreen
 import com.app.antweber.ui.viewmodel.HomeViewModel
 import com.app.antweber.ui.viewmodel.ImageDetailViewModel
 
@@ -35,6 +36,16 @@ fun NavGraph(
             ImageDetailScreen(
                 viewModel = imageDetailViewModel,
                 onBack = { navController.popBackStack() }
+            )
+        }
+        composable("testScreen") {
+            TestScreen(
+                viewModel = homeViewModel,
+                onBack = { navController.popBackStack() },
+                onImageClick = { imageUrl ->
+                    imageDetailViewModel.setImageUrl(imageUrl)
+                    navController.navigate("imageDetail")
+                }
             )
         }
     }

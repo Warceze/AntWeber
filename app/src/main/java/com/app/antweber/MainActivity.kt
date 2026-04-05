@@ -16,7 +16,6 @@ import com.app.antweber.ui.theme.AntWeberTheme
 import com.app.antweber.ui.theme.SplashScreen
 import com.app.antweber.ui.viewmodel.HomeViewModel
 import com.app.antweber.ui.viewmodel.ImageDetailViewModel
-import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
