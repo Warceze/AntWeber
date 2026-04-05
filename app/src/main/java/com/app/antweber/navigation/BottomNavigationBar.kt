@@ -3,6 +3,7 @@ package com.app.antweber.navigation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -20,7 +21,9 @@ import com.app.antweber.R
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
-    Column {
+    Column(
+        modifier = Modifier.background(Color.White)
+    ) {
 
         Box(
             modifier = Modifier
@@ -28,13 +31,10 @@ fun BottomNavigationBar(navController: NavController) {
                 .height(1.dp)
                 .background(Color.LightGray)
         )
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-        ) {
-            NavigationBar {
+            NavigationBar(
+                containerColor = Color.White,
+                modifier = Modifier.height(60.dp)
+            ) {
                 val currentRoute by navController.currentBackStackEntryAsState()
 
                 NavigationBarItem(
@@ -43,7 +43,7 @@ fun BottomNavigationBar(navController: NavController) {
                             painter = painterResource(id = R.drawable.ic_home),
                             contentDescription = "Home",
                             modifier = Modifier
-                                .size(27.dp)
+                                .size(30.dp)
                                 .padding(vertical = 1.dp),
                             tint = if (currentRoute?.destination?.route == "home") Color(0xFFCF497E) else Color.Gray
                         )
@@ -80,7 +80,5 @@ fun BottomNavigationBar(navController: NavController) {
                     )
                 )
             }
-
-        }
     }
 }

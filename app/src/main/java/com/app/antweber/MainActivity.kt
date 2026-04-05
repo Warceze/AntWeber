@@ -3,10 +3,11 @@ package com.app.antweber
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.Scaffold
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
@@ -38,16 +39,21 @@ class MainActivity : ComponentActivity() {
                     val homeViewModel: HomeViewModel = viewModel()
                     val imageDetailViewModel: ImageDetailViewModel = viewModel()
 
-                    Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        bottomBar = { BottomNavigationBar(navController) }
-                    ) { innerPadding ->
-                        NavGraph(
-                            navController = navController,
-                            homeViewModel = homeViewModel,
-                            imageDetailViewModel = imageDetailViewModel,
-                            modifier = Modifier.padding(innerPadding)
-                        )
+                    Column(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth()
+                        ) {
+                            NavGraph(
+                                navController = navController,
+                                homeViewModel = homeViewModel,
+                                imageDetailViewModel = imageDetailViewModel
+                            )
+                        }
+                        BottomNavigationBar(navController)
                     }
                 }
             }

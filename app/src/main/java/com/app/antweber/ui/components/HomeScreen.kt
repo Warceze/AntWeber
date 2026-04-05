@@ -3,7 +3,6 @@ package com.app.antweber.ui.components
 import android.util.Log
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.tween
@@ -72,7 +71,7 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 20.dp)
+                .padding(horizontal = 16.dp)
         ) {
             SearchBar(
                 modifier = Modifier
@@ -86,7 +85,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.White)
-                    .padding(bottom = 16.dp)
+                    .padding(bottom = 4.dp)
             )
 
             if (images.isEmpty()) {
@@ -101,7 +100,6 @@ fun HomeScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(Color.White)
-                        .padding(bottom = 15.dp)
                 ) {
                     items(images) { image ->
                         ImageItem(
@@ -175,7 +173,7 @@ fun SearchBar(modifier: Modifier = Modifier) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 0.dp, vertical = 12.dp)
+                .padding(horizontal = 0.dp, vertical = 14.dp)
                 .clip(RoundedCornerShape(35.dp)),
             singleLine = true,
             visualTransformation = VisualTransformation.None,
